@@ -1,0 +1,66 @@
+{% extends 'assignment_01/base.html' %}
+{% load static %}
+{% block title %}{% endblock%}
+{% block content %}
+<h1>List of fixed values</h1>
+<hr>
+{% if obj %}
+<p>Nums = {{obj.nums}}</p>
+{% else %}
+<p>Nums = {{nums}}</p>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    <input type="submit" class="btn btn-success" value="Check Results">
+    <a class="btn btn-success" href="{% url 'fixed' %}">Try Again</a>
+
+    <p>You also may be loking for <a href="{% url 'range' %}">Range value List<a> or
+      <a href="{% url 'range' %}">Random value List</a></p>
+</form>
+{% if obj.length %}
+
+<h3>Results from the above list</h3>
+<div class="container mt-3">
+    <br>
+    <div class="card bg-primary text-white">
+      <div class="card-body"><span class="text-black">Total numbers: </span>{{obj.length}}</div>
+    </div>
+    <br>
+    <div class="card bg-success text-white">
+      <div class="card-body"><span class="text-black">Even Numbers: </span>{{obj.even}}</div>
+    </div>
+    <br>
+    <div class="card bg-info text-white">
+      <div class="card-body"><span class="text-black">Odd Numbers: </span>{{obj.odd}}</div>
+    </div>
+    <br>
+    <div class="card bg-warning text-white">
+      <div class="card-body"><span class="text-black">Minimum Number: </span>{{obj.min}}</div>
+    </div>
+    <br>
+    <div class="card bg-danger text-white">
+      <div class="card-body"><span class="text-black">Maximum Number: </span>{{obj.max}}</div>
+    </div>
+    <br>
+    <div class="card bg-dark text-white">
+      <div class="card-body">Sum of Numbers: {{obj.sum}}</div>
+    </div>
+    <br>
+    <div class="card bg-secondary text-white">
+      <div class="card-body"><span class="text-black">Avarage Number: </span>{{obj.avg}}</div>
+    </div>
+  </div>
+
+  {% else %}
+  <p class="text-muted mt-3">Your results will be shown here after clicking the button 'Check Results'<p>
+
+{% endif %}
+  
+<div id="back" class="mt-5">
+    <a class="btn btn-outline-info mt-2" href="{% url 'python' %}">Back to Assignments</a>
+    <a class="btn btn-outline-info mt-2" href="{% url 'ass1-home' %}">Back to Assignment-01</a>
+</div>
+
+
+{% endblock %}

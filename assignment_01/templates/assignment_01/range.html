@@ -1,0 +1,67 @@
+{% extends 'assignment_01/base.html' %}
+{% load static %}
+{% block title %}{% endblock%}
+{% block content %}
+<h1 class="text-center">List of Range values</h1>
+<hr>
+<form method="post" class="mt-3 mb-3">
+    {% csrf_token %}
+    <h3>Input a range to create a list</h3>
+        <div class="mb-3 mt-3">
+            <label for="mynum" class="form-label">Range:</label>
+            <input type='number' name="mynum" id="mynum"
+             class="form-control" autocomplete='off' autofocus placeholder="Enter a number" required>
+        </div>
+    <input type="submit" class="btn btn-success" value="Check Results" >
+    <a class="btn btn-success" href="{% url 'range' %}">Try Again</a>
+    <p>You also may be loking for <a href="{% url 'fixed' %}">Fixed value List<a> or
+        <a href="{% url 'random' %}">Random value List</a></p>
+</form>
+
+
+{% if nums %}
+
+<h3>Results bellow from the above created list</h3>
+<div class="container mt-3">
+    <div class="card bg-light text-white">
+      <div class="card-body"><b class="text-black">Created List: </b><span class="text-black">{{nums}}</span></div>
+    </div>
+    <br>
+    <div class="card bg-primary text-white">
+      <div class="card-body"><span class="text-black">Total numbers: </span>{{length}}</div>
+    </div>
+    <br>
+    <div class="card bg-success text-white">
+      <div class="card-body"><span class="text-black">Even Numbers: </span>{{even}}</div>
+    </div>
+    <br>
+    <div class="card bg-info text-white">
+      <div class="card-body"><span class="text-black">Odd Numbers: </span>{{odd}}</div>
+    </div>
+    <br>
+    <div class="card bg-warning text-white">
+      <div class="card-body"><span class="text-black">Minimum Number: </span>{{min}}</div>
+    </div>
+    <br>
+    <div class="card bg-danger text-white">
+      <div class="card-body"><span class="text-black">Maximum Number: </span>{{max}}</div>
+    </div>
+    <br>
+    <div class="card bg-dark text-white">
+      <div class="card-body">Sum of Numbers: {{sum}}</div>
+    </div>
+    <br>
+    <div class="card bg-secondary text-white">
+      <div class="card-body"><span class="text-black">Avarage Number: </span>{{avg}}</div>
+    </div>
+  </div>
+  
+  {% else %}
+  <p class="text-muted mt-3">Your results will be shown here after clicking the button 'Check Results'<p>
+
+{% endif %}
+    <div id="back" class="mt-5">
+        <a class="btn btn-outline-info mt-2" href="{% url 'python' %}">Back to Assignments</a>
+        <a class="btn btn-outline-info mt-2" href="{% url 'ass1-home' %}">Back to Assignment-01</a>
+    </div>
+{% endblock %}
